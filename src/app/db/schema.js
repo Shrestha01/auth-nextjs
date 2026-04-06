@@ -1,10 +1,17 @@
-import { text } from "drizzle-orm/gel-core";
-import { pgTable, serial } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  primaryKey,
+  integer,
+  serial,
+} from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   name: text("name"),
   email: text("email").unique().notNull(),
+  password: text("password").notNull(),
   emailVarified: timestamp("email_verified", { mode: "date" }),
   image: text("image"),
 });
@@ -12,7 +19,7 @@ export const users = pgTable("users", {
 export const accounts = pgTable(
   "account",
   {
-    userId: text("userId")
+    userId: integer("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     type: text("type").notNull(),

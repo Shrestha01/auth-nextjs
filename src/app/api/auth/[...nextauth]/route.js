@@ -1,13 +1,7 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import { authOptions } from "@/app/api/auth/authOptions";
 
-export const authOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-  ],
-};
+const handler = NextAuth(authOptions);
 
-export default NextAuth(authOptions);
+// This is the key for the App Router
+export { handler as GET, handler as POST };
