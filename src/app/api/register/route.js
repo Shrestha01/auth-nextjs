@@ -1,5 +1,5 @@
-import { db } from "@/db"; // Check your path to db/index.js
-import { users } from "@/db/schema";
+import { db } from "@/app/db/index"; // Check your path to db/index.js
+import { users } from "@/app/db/schema";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
